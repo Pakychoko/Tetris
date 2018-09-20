@@ -1,6 +1,6 @@
-<Introduce aquí tu DNI o NIE sin la letra final, si es un NIE con la letra inicial en mayúsculas>
+<48643667>
 
 # Prácticas de Programación 3: Juego del Tetris
-**Alumno/a:** <Introduce aquí tu nombre y apellidos>
+**Alumno/a:** <Francisco Alejandro Azorin Gil>
 
-**Grupo de prácticas:** <Introduce aquí tu grupo de prácticas>
+**Grupo de prácticas:** <Grupo 6>
