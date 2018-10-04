@@ -27,8 +27,8 @@ public class Coordinate {
 
 	/**
 	 * Metodo constructor de la clase Coordinate
-	 * @param row
-	 * @param column
+	 * @param row Fila en la que se situa la coordenada
+	 * @param column Columna en la que se situa la coordenada
 	 */
 	public Coordinate(int row, int column) {
 		super();
@@ -39,7 +39,7 @@ public class Coordinate {
 	
 	/**
 	 * Metodo constructor de la clase Coordinate
-	 * @param c
+	 * @param c Coordenada
 	 */
 	public Coordinate(Coordinate c) {
 		this.row = c.row;
@@ -59,7 +59,7 @@ public class Coordinate {
 	
 	/**
 	 * Devuelve la fila de la coordenada
-	 * @return the row
+	 * @return the row Devuelve la fila en la que se situa la coordenada
 	 */
 	public int getRow() {
 		return row;
@@ -67,7 +67,7 @@ public class Coordinate {
 
 	/**
 	 * Devuelve la columna de la coordenada
-	 * @return the column
+	 * @return the column Devuelve la columna en la que se situa la coordenada
 	 */
 	public int getColumn() {
 		return column;
@@ -77,7 +77,7 @@ public class Coordinate {
 	
 	/**
 	 * Metodo que devuelve la cantidad de coordenadas
-	 * @return COORDINATE_COUNT
+	 * @return COORDINATE_COUNT Devuelve la cantidad de Coordenadas
 	 */
 	public static int getCoordinateCount() {
 		return COORDINATE_COUNT;
@@ -87,7 +87,7 @@ public class Coordinate {
 
 	/**
 	 * Metodo que devuelve la coordenada en forma de Cadena de texto
-	 * @return String of Coordinate
+	 * @return String Devuelve una cadena de texto con la posicion de la coordenada
 	 */
 	@Override
 	public String toString() {
@@ -97,6 +97,7 @@ public class Coordinate {
 
 	/**
 	 * Metodo que compara coordenadas y devuelve si es igual o no
+	 * @return boolean Devuelve true si es igual o false si no lo es
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -114,8 +115,25 @@ public class Coordinate {
 		return true;
 	}
 
-
+	/**
+	 * Metodo que devuelve un entero que debe ser el mismo para todas aquellas coordenadas 
+	 * que son iguales de acuerdo al método equals();
+	 * @return result Valor Hash para la coordenada
+	 */
+	public int hashCode() {
+	      final int prime = 31;
+	      int result = 1;
+	      result = prime * result + column;
+	      result = prime * result + row;
+	      return result;
+	    }
 	
+	
+	/**
+	 * Metodo que añade coordenadas
+	 * @param c Coordenada que se le pasa a la funcion
+	 * @return Coordinate Devuelve una nueva coordenada resultado de la suma de coordenadas
+	 */
 	public Coordinate add(Coordinate c) {
 		return new Coordinate(this.row + c.row, this.column + c.column);
 	}
