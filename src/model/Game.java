@@ -14,8 +14,14 @@ public class Game {
 
 	private boolean gameEnded;
 	
+	private Gameboard board;
+	
+	private Piece p;
+	
+	
 	public Game(Coordinate c) {
 		
+		this.board = new Gameboard(c);
 	}
 	
 	
@@ -28,11 +34,15 @@ public class Game {
 		
 	}
 	
-	public void moveCurrentPieceCounterclockwise() {
+	public void moveCurrentPieceDown() {
 		
 	}
 	
-	public void moveCurrentPieceClockwise() {
+	public void rotateCurrentPieceCounterclockwise() {
+		
+	}
+	
+	public void rotateCurrentPieceClockwise() {
 		
 	}
 	
@@ -40,19 +50,22 @@ public class Game {
 	//GAME METHODS
 	public boolean nextPiece() {
 		
+		this.p = new Piece();	
+		Coordinate currentPosition = new Coordinate(0, board.getWidth() / 2 - 2);
 		return false;
 	}
 	
 	public boolean isCurrentPieceFixed() {
-		
-		return false;
+		return p.isFixed();
 	}
 	
-	public boolean isGameEnded() {
-		
-		return false;
+	public boolean isGameEnded() {	
+		return this.gameEnded;
 	}
 	
 	//OTHER METHODS
-	TO STRING
+	@Override
+	public String toString() {
+		return board.toString();
+	}
 }

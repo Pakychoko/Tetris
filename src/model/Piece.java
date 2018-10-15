@@ -9,6 +9,8 @@ import java.util.Set;
 
 /**
  * Clase que representa una pieza en el juego del Tetris.
+ * Contiene su orientacion, si esta fija o no, el simbolo que usa, tamaño de su cuadro y la pieza dentro del cuadro.
+ * 
  * @author Francisco Alejandro Azorin Gil 48643667R
  *
  */
@@ -89,10 +91,25 @@ public class Piece {
 		return this.blockSymbol;
 	}
 	
+	/**
+	 * Devuelve un conjunto (Set) que contiene todas las coordenadas del tablero que serán ocupadas 
+	 * por la pieza si se posiciona con la esquina superior izquierda de su cuadrado delimitador
+	 * en la posición del tablero indicada por el parámetro.
+	 * @param c Coordenada posicion del tablero inicial
+	 * @return squares Mapa con las coordenadas
+	 */
 	public Set<Coordinate> getAbsoluteCells(Coordinate c){
 		
 		Set<Coordinate> squares = new HashSet<Coordinate>();
-		FALTA
+		
+		
+		for(int height = 0; height < this.BOUNDING_SQUARE_SIZE; height++) {
+			
+			for(int width = 0; width < this.BOUNDING_SQUARE_SIZE; width++) {
+				squares.add( new Coordinate(c.getRow() + height, c.getColumn() + width) );
+			}
+		}
+			
 		return squares;
 	}
 	
