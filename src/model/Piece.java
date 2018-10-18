@@ -126,9 +126,7 @@ public class Piece {
 	 * @param b Boolean True es fija, False no lo es
 	 */
 	public void setFixed(Boolean b) {
-		
-		if(b == true) this.fixed = true;
-		else this.fixed = false;
+		fixed = b;
 	}
 	
 	
@@ -140,6 +138,12 @@ public class Piece {
 	public String toString() {
 		
 		String l = new String();
+		
+		//esto es una prueba para asignarlo a 270
+		orientation = Rotation.D270;
+		
+		//HAY UN PROBLEMA CON EL ORIENTATION, NO ME SACA EL NUMERO QUE TOCA (0,1,2,3)
+		-
 		int valorOrientation = this.orientation.ordinal();
 		
 		for(int i = 0; i < shape[valorOrientation].length; i++) {
