@@ -24,6 +24,7 @@ import org.junit.Test;
 */
 
 public class GameTestP2 {
+	
 	Game gameMinimal, gameMiniTest;
 	StringBuilder sbIn = new StringBuilder();
 	StringBuilder sbOut = new StringBuilder();
@@ -46,6 +47,7 @@ public class GameTestP2 {
 	//Prueba del constructor Game. Debe construir un board
 	@Test
 	public void testGame() {
+		
 		//Comprobamos que board ha sido iniciada.
 		Game game = new Game(new Coordinate(7,10));
 		try {

@@ -12,5 +12,20 @@ package model;
  */
 public enum Rotation {
 
-	D0, D270, D180,	D90;
+	/**
+	 * Pieza Orientada a 0 grados
+	 */
+	D0, 
+	/**
+	 * Pieza orientada a 270 grados
+	 */
+	D270, 
+	/**
+	 * Pieza orientada a 180 grados
+	 */
+	D180,	
+	/**
+	 * Pieza orientada a 90 grados
+	 */
+	D90;
 }

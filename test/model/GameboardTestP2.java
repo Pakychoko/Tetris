@@ -14,7 +14,7 @@ import org.junit.Test;
 /*
  * Busca en este fichero los test
  *
- *	testGameboard()
+ *	testGameboard() DONE
  *	testPutPieceD270()
  *	testPutPieceD180()
  *	testPutPieceD90()
@@ -41,20 +41,24 @@ public class GameboardTestP2 {
 	static Gameboard gb1;
 	Piece p1;
 	static String board0, board1, board3;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass //Se ejecuta una sola vez antes que todos los test
 	public static void setUpBeforeClass() throws Exception {
+		
 		gb1 = new Gameboard(new Coordinate(10,7));
-		board0= new String();
-		for (int i=0; i<gb1.getHeight(); i++) {
-			for (int j=0; j<gb1.getWidth();j++) {
-				board0+="·";
-				board3+="▒";
+		board0 = new String();
+		
+		for (int i = 0; i < gb1.getHeight(); i++) {
+			for (int j=0; j < gb1.getWidth();j++) {
+				
+				board0 += "·";
+				board3 += "▒";
 			}
-			board0+="\n";
-			board3+="\n";
+			board0 += "\n";
+			board3 += "\n";
 		}
 		
 		board1="···▒···\n" +
@@ -71,9 +75,10 @@ public class GameboardTestP2 {
 	
 	@Before //Se ejecuta antes de cada test
 	public void setUp() throws Exception {
-		c1=new Coordinate(10,7);
+		
+		c1 = new Coordinate(10,7);
 		p1 = new Piece();
-		gb1=new Gameboard(c1);
+		gb1 = new Gameboard(c1);
 		
 	}
 
@@ -84,10 +89,14 @@ public class GameboardTestP2 {
 		assertEquals ("heigth = row", c1.getRow(),gb1.getHeight());
 		assertEquals ("width == column", c1.getColumn(), gb1.getWidth());
 		
-		// ¡COMPLETA EL TEST!
 		// Comprueba que todas las celdas del tablero están vacías
-		
-		fail("¡Completa testGameboard()!");
+		for(int i = 0; i < gb1.getHeight(); i++) {
+			
+			for(int j = 0; j < gb1.getWidth(); j++) {
+				assertNull("Celda vacia",gb1.getCellContent(new Coordinate(j,i)));
+			}
+		}
+
 	}
 
 	/*
@@ -96,18 +105,22 @@ public class GameboardTestP2 {
 	 */
 	@Test
 	public final void testPutPieceD0() {
+		
 		Coordinate c = new Coordinate(5,3);
 		Piece p = new Piece();
 		gb1.putPiece(c, p);
 		Coordinate caux;
-		for (int i=0; i<gb1.getWidth(); i++)
-			for (int j=0; j<gb1.getHeight(); j++) {
-			  if ((i>=c.getColumn())&&(i<=c.getColumn()+4)&&(j==c.getRow()+1)) {
-			    caux=new Coordinate(j,i);
-				assertSame("Pieza en "+caux, p, gb1.getCellContent(new Coordinate(j,i)));
-			  }
-			  else
-				assertNull("Celda vacia",gb1.getCellContent(new Coordinate(j,i)));
+		
+		for (int i = 0; i < gb1.getWidth(); i++)
+			
+			for (int j = 0; j < gb1.getHeight(); j++) {
+				
+				if ((i >= c.getColumn()) && (i <= c.getColumn() + 4) && (j == c.getRow()+1)) {
+					caux = new Coordinate(j,i);
+					assertSame("Pieza en "+caux, p, gb1.getCellContent(new Coordinate(j,i)));
+				
+				} else
+					assertNull("Celda vacia",gb1.getCellContent(new Coordinate(j,i)));
 			}
 	}
 
@@ -137,15 +150,18 @@ public class GameboardTestP2 {
 	 */
 	@Test
 	public final void testPutPieceInSmallBoard() {
+		
 		Gameboard gb2 = new Gameboard(new Coordinate(3,3));
 		Coordinate c = new Coordinate(0,0);
 		Piece p = new Piece();
 		gb2.putPiece(c, p);
 		Coordinate caux;
-		for (int i=0; i<gb2.getWidth(); i++)
-			for (int j=0; j<gb2.getHeight(); j++) {
-			  caux=new Coordinate(j,i);
-			  if ((i>=c.getColumn())&&(i<=c.getColumn()+4)&&(j==c.getRow()+1)) 
+		
+		for (int i = 0; i < gb2.getWidth(); i++)
+			for (int j = 0; j < gb2.getHeight(); j++) {
+				
+			  caux = new Coordinate(j,i);
+			  if ((i >= c.getColumn()) && (i<=c.getColumn() + 4) && (j == c.getRow()+1)) 
 					assertSame("Pieza en "+caux, p, gb2.getCellContent(new Coordinate(j,i)));
 			  else
 				assertNull("Celda vacia",gb2.getCellContent(new Coordinate(j,i)));

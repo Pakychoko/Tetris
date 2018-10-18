@@ -147,7 +147,7 @@ public class Piece {
 			if(shape[valorOrientation][i] == 1) l = l + this.getBlockSymbol();
 			else l = l + '·';
 			
-			if(i == 3 || i == 7 || i == 11) l = l + "\n";
+			if(i == 3 || i == 7 || i == 11 || i == 15) l = l + "\n";
 			
 		}
 
