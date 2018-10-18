@@ -124,7 +124,7 @@ public class PieceTestP2 {
 		// 3. El símbolo a usar para dibujar la pieza deber ser ▒	
 		
 		assertEquals(Rotation.D270, p1.getOrientation());
-		assertFalse(p1.isFixed());
+		assertFalse(!p1.isFixed());
 		assertEquals('▒', p1.getBlockSymbol());
 		
 	
