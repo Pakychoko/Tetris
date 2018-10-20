@@ -72,7 +72,7 @@ public class Piece {
 	 * @return True si esta fija o False si no lo esta
 	 */
 	public boolean isFixed() {
-		return this.fixed;
+		return fixed;
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class Piece {
 	 * @return Rotation orientation
 	 */
 	public Rotation getOrientation() {
-		return this.orientation;
+		return orientation;
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class Piece {
 	 * @return character blockSymbol
 	 */
 	public char getBlockSymbol() {
-		return this.blockSymbol;
+		return blockSymbol;
 	}
 	
 	/**
@@ -103,9 +103,9 @@ public class Piece {
 		Set<Coordinate> squares = new HashSet<Coordinate>();
 		
 		
-		for(int height = 0; height < this.BOUNDING_SQUARE_SIZE; height++) {
+		for(int height = 0; height < BOUNDING_SQUARE_SIZE; height++) {
 			
-			for(int width = 0; width < this.BOUNDING_SQUARE_SIZE; width++) {
+			for(int width = 0; width < BOUNDING_SQUARE_SIZE; width++) {
 				squares.add( new Coordinate(c.getRow() + height, c.getColumn() + width) );
 			}
 		}
@@ -118,7 +118,7 @@ public class Piece {
 	 * @param r Rotation que se le asigna
 	 */
 	public void setOrientation(Rotation r) {
-		this.orientation = r;
+		orientation = r;
 	}
 	
 	/**
@@ -139,12 +139,7 @@ public class Piece {
 		
 		String l = new String();
 		
-		//esto es una prueba para asignarlo a 270
-		orientation = Rotation.D270;
-		
-		//HAY UN PROBLEMA CON EL ORIENTATION, NO ME SACA EL NUMERO QUE TOCA (0,1,2,3)
-		-
-		int valorOrientation = this.orientation.ordinal();
+		int valorOrientation = orientation.ordinal();
 		
 		for(int i = 0; i < shape[valorOrientation].length; i++) {
 			
@@ -168,10 +163,10 @@ public class Piece {
 	public void rotateClockwise() {
 		
 		switch(orientation) {
-			case D0: this.orientation = Rotation.D270; break;
-			case D270: this.orientation = Rotation.D180; break;
-			case D180: this.orientation = Rotation.D90; break;
-			case D90: this.orientation = Rotation.D0; break;
+			case D0: orientation = Rotation.D270; break;
+			case D270: orientation = Rotation.D180; break;
+			case D180: orientation = Rotation.D90; break;
+			case D90: orientation = Rotation.D0; break;
 		}
 	}
 	
@@ -181,10 +176,10 @@ public class Piece {
 	public void rotateCounterclockwise() {
 		
 		switch(orientation) {
-			case D0: this.orientation = Rotation.D90; break;
-			case D90: this.orientation = Rotation.D180; break;
-			case D180: this.orientation = Rotation.D270; break;
-			case D270: this.orientation = Rotation.D0; break;
+			case D0: orientation = Rotation.D90; break;
+			case D90: orientation = Rotation.D180; break;
+			case D180: orientation = Rotation.D270; break;
+			case D270: orientation = Rotation.D0; break;
 		}
 	}
 	

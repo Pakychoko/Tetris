@@ -71,8 +71,7 @@ public class Gameboard {
 		Set<Coordinate>squares = p.getAbsoluteCells(c);
 		
 		for (Coordinate cor : squares) {
-			if (cor.getRow() > this.getHeight() - 1 || cor.getColumn() > this.getWidth() - 1
-					|| cor.getColumn() < 0 || cor.getRow() < 0) {
+			if (cor.getRow() > this.getHeight() - 1 || cor.getColumn() > this.getWidth() - 1 || cor.getColumn() < 0 || cor.getRow() < 0) {
 				valid = false;
 			}
 		}
@@ -145,10 +144,7 @@ public class Gameboard {
 	 * @return Piece (Referencia)
 	 */
 	public Piece getCellContent(Coordinate c) {
-		
-		Piece p;
-		p = gameboard.get(c);
-		return p;
+		return gameboard.get(c);
 	}
 	
 	/**

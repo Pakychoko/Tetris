@@ -18,11 +18,11 @@ import org.junit.Test;
  *	testPutPieceD270()
  *	testPutPieceD180()
  *	testPutPieceD90()
- *  testIsPlaceValidError2()
- *  testIsPlaceValidError3()
- *	testIsPlaceValidError4()
- *	testIsPlaceFree3()
- *	testIsPlaceFree5()
+ *  testIsPlaceValidError2() DONE
+ *  testIsPlaceValidError3() DONE
+ *	testIsPlaceValidError4() DONE
+ *	testIsPlaceFree3() DONE
+ *	testIsPlaceFree5() DONE
  *	testRemovePiece1()
  *	testRemovePiece3()
  *	testRemovePiece4()
@@ -116,11 +116,13 @@ public class GameboardTestP2 {
 			for (int j = 0; j < gb1.getHeight(); j++) {
 				
 				if ((i >= c.getColumn()) && (i <= c.getColumn() + 4) && (j == c.getRow()+1)) {
+					
 					caux = new Coordinate(j,i);
 					assertSame("Pieza en "+caux, p, gb1.getCellContent(new Coordinate(j,i)));
 				
-				} else
+				} else {
 					assertNull("Celda vacia",gb1.getCellContent(new Coordinate(j,i)));
+				}
 			}
 	}
 
@@ -202,19 +204,46 @@ public class GameboardTestP2 {
 	//    con alguna coordenada no correcta en la esquina inferior izquierda
 	@Test
     public final void testIsPlaceValidError2() {
-		fail("¡Crea el test testIsPlaceValidError2()!");
+		
+		Coordinate c = new Coordinate(gb1.getHeight()+1, -1);
+		
+		assertFalse ("Error [12,-1]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D90);
+		assertFalse ("Error [11,1]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D180);
+		assertFalse ("Error [13,-1]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D270);
+		assertFalse ("Error [11,2]",gb1.isPlaceValid(c, p1));
 	}
 	// 2. Uno para comprobar el funcionamiento de isPlaceValid para p1 
 	//    con alguna coordenada no correcta en la esquina superior derecha
 	@Test
     public final void testIsPlaceValidError3() {
-		fail("¡Crea el test testIsPlaceValidError3()!");
+		
+		Coordinate c = new Coordinate(-1, gb1.getWidth()+1);
+		
+		assertFalse ("Error [0,11]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D90);
+		assertFalse ("Error [-1,13]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D180);
+		assertFalse ("Error [1,11]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D270);
+		assertFalse ("Error [-1,14]",gb1.isPlaceValid(c, p1));
 	}
 	// 3. Uno para comprobar el funcionamiento de isPlaceValid para p1 
 	//    con alguna coordenada no correcta en la esquina inferior derecha 
 	@Test
     public final void testIsPlaceValidError4() {
-		fail("¡Crea el test testIsPlaceValidError4()!");
+		
+		Coordinate c = new Coordinate(gb1.getHeight()+1, gb1.getWidth()+1);
+		
+		assertFalse ("Error [12,11]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D90);
+		assertFalse ("Error [11,13]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D180);
+		assertFalse ("Error [13,11]",gb1.isPlaceValid(c, p1));
+		p1.setOrientation(Rotation.D270);
+		assertFalse ("Error [11,14]",gb1.isPlaceValid(c, p1));
 	}
 		
 	//Tests de posiciones válidas para la pieza p1
@@ -272,7 +301,12 @@ public class GameboardTestP2 {
 	// Comprueba que isPlaceFree devuelve cierto en celdas ocupadas por otra pieza no fija
     @Test
     public final void testIsPlaceFree3() {
-		fail("¡Crea el test testIsPlaceFree3()!");
+		Coordinate c = new Coordinate(3,3);
+		Piece p2 = new Piece();
+		
+		gb1.putPiece(c, p1);
+		gb1.putPiece(c, p2);
+		assertTrue(gb1.isPlaceFree(c, p2));
 	}
 	
 	//Prueba isPlaceFree en celdas ocupadas por la misma pieza fija.
@@ -289,7 +323,14 @@ public class GameboardTestP2 {
 	// Comprueba que isPlaceFree devuelve falso en celdas ocupadas por otra pieza fija
     @Test
     public final void testIsPlaceFree5() {
-		fail("¡Crea el test testIsPlaceFree5()!");
+		Coordinate c = new Coordinate(3,3);
+		Piece p2 = new Piece();
+		
+		gb1.putPiece(c, p1);
+		p1.setFixed(true);
+		
+		gb1.putPiece(c, p2);
+		assertTrue(gb1.isPlaceFree(c, p2));
 	}
 	
 	//Elimina todas las piezas
@@ -305,7 +346,12 @@ public class GameboardTestP2 {
 		// ¡COMPLETA EL TEST!
 		// Comprueba que todas las celdas están vacías 
 		
-		fail("¡Completa el test testRemovePiece1()!");
+		for (int i=0; i<gb1.getHeight(); i++) {
+			for (int j=0; j<gb1.getWidth();j++) {
+				c1 = new Coordinate(i,j);
+				assertNull("Posicion "+c1.toString()+" vacia ",gb1.getCellContent(c1));
+			}
+		}
 
 	}
 	
@@ -322,8 +368,8 @@ public class GameboardTestP2 {
 		Coordinate c1;
 		//Almacenamos en cells las celdas ocupadas por p2
 		Set<Coordinate> cells = p2.getAbsoluteCells(new Coordinate(0,2));
-		for (int i=0; i<gb1.getHeight(); i++) {
-			for (int j=0; j<gb1.getWidth();j++) {
+		for (int i = 0; i < gb1.getHeight(); i++) {
+			for (int j = 0; j < gb1.getWidth(); j++) {
 				c1 = new Coordinate(i,j);
 				if (cells.contains(c1)) 
 					assertEquals ("Posicion de p2 "+c1.toString(),p2,gb1.getCellContent(c1));
@@ -337,8 +383,8 @@ public class GameboardTestP2 {
 	@Test
 	public final void testRemovePiece3() {
 		//Ponemos la misma pieza en todo el gameboard
-		for (int i=0; i<gb1.getHeight(); i++) 
-			for (int j=0; j<gb1.getWidth();j++) 
+		for (int i = 0; i < gb1.getHeight(); i++) 
+			for (int j = 0; j < gb1.getWidth(); j++) 
 				gb1.setCellContent(new Coordinate(i,j), p1);
 		
 		gb1.removePiece(p1);
@@ -347,7 +393,12 @@ public class GameboardTestP2 {
 		// ¡COMPLETA EL TEST!
 		// Comprueba que  no hay ninguna pieza en el tablero 	
 		
-		fail("¡Completa el test testRemovePiece3()!");
+		for (int i = 0; i < gb1.getHeight(); i++) {
+			for (int j = 0; j < gb1.getWidth(); j++) {
+				c1 = new Coordinate(i,j);
+				assertNull("Posicion "+c1.toString()+" vacia ",gb1.getCellContent(c1));
+			}
+		}
 	}
 
 	//Pone dos piezas en todo el tablero: p1 en celdas donde i==j y p2
@@ -357,10 +408,10 @@ public class GameboardTestP2 {
 		//Ponemos las piezas en todo el gameboard
 		Piece p2 = new Piece(p1);
 		Coordinate c1;
-		for (int i=0; i<gb1.getHeight(); i++) 
-			for (int j=0; j<gb1.getWidth();j++) {
-				c1=new Coordinate(i,j);
-				if (i==j) 
+		for (int i = 0; i < gb1.getHeight(); i++) 
+			for (int j = 0; j < gb1.getWidth(); j++) {
+				c1 = new Coordinate(i,j);
+				if (i == j) 
 					gb1.setCellContent(c1, p1);
 				else 
 					gb1.setCellContent(c1, p2);
@@ -370,8 +421,17 @@ public class GameboardTestP2 {
 				
 		// ¡COMPLETA EL TEST!
 		// Comprueba que  en el talbero no está p1 pero sí p2 	
+		Set<Coordinate> cells = p2.getAbsoluteCells(new Coordinate(0,2));
 		
-		fail("¡Completa el test testRemovePiece4()!");
+		for (int i = 0; i < gb1.getHeight(); i++) {
+			for (int j = 0; j < gb1.getWidth(); j++) {
+				c1 = new Coordinate(i,j);
+				if (cells.contains(c1)) 
+					assertEquals ("Posicion de p2 "+c1.toString(),p2,gb1.getCellContent(c1));
+				else
+					assertNull("Posicion "+c1.toString()+" vacia ",gb1.getCellContent(c1));
+			}
+		}
 	
 	}
 	

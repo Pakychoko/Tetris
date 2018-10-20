@@ -286,6 +286,7 @@ public class PieceTestP2 {
 	 */  
 	@Test
 	public void testToStringD90() {
+		p1.setOrientation(Rotation.D90);
 		assertEquals("D90 toString",sD90,p1.toString());
 	}
 	
@@ -294,6 +295,7 @@ public class PieceTestP2 {
 	 */
 	@Test
 	public void testToStringD180() {
+		p1.setOrientation(Rotation.D180);
 		assertEquals("D180 toString",sD180,p1.toString());
 	}
 	
@@ -302,6 +304,7 @@ public class PieceTestP2 {
 	 */  
 	@Test
 	public void testToStringD270() {
+		p1.setOrientation(Rotation.D270);
 		assertEquals("D270 toString",sD270,p1.toString());
 	}
 
